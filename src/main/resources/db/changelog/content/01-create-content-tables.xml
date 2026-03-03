@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create-posts-table" author="juanse">
+        <createTable tableName="posts">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_post_profile" referencedTableName="profiles" referencedColumnNames="id"/>
+            </column>
+            <column name="content" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-comments-table" author="juanse">
+        <createTable tableName="comments">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="post_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_comment_post" referencedTableName="posts" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="author_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_comment_author" referencedTableName="profiles" referencedColumnNames="id"/>
+            </column>
+            <column name="content" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-likes-table" author="juanse">
+        <createTable tableName="likes">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="profile_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_like_profile" referencedTableName="profiles" referencedColumnNames="id"/>
+            </column>
+            <column name="post_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_like_post" referencedTableName="posts" referencedColumnNames="id" deleteCascade="true"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addUniqueConstraint tableName="likes" columnNames="profile_id, post_id" constraintName="uq_profile_post_like"/>
+    </changeSet>
+
+</databaseChangeLog>

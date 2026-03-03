@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <changeSet id="create-profiles-table" author="juanse">
+        <createTable tableName="profiles">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-fk-profile-user" author="juanse">
+        <addForeignKeyConstraint baseTableName="profiles"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_profile_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-follows-table" author="juanse">
+        <createTable tableName="follows">
+            <column name="follower_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_follow_follower" referencedTableName="profiles" referencedColumnNames="id"/>
+            </column>
+            <column name="following_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="fk_follow_following" referencedTableName="profiles" referencedColumnNames="id"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addUniqueConstraint tableName="follows" columnNames="follower_id, following_id" constraintName="uq_follow_relationship"/>
+    </changeSet>
+
+</databaseChangeLog>
