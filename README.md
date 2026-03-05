@@ -2,7 +2,7 @@
 
 Backend para una red social desarrollado con Spring Boot que proporciona una API RESTful para la gestión de usuarios, publicaciones, comentarios, likes y follows.
 
-## 🚀 Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 - **Java 17** - Lenguaje de programación principal
 - **Spring Boot 4.0.3** - Framework principal
@@ -15,7 +15,7 @@ Backend para una red social desarrollado con Spring Boot que proporciona una API
 - **Maven** - Para la gestión de dependencias
 - **Docker** - Para la contenerización
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 El proyecto sigue una arquitectura modular organizada en los siguientes paquetes:
 
@@ -43,7 +43,7 @@ src/main/java/com/juan/red_social_backend/
     └── jwtUtils/     # Utilidades para JWT
 ```
 
-## 🛠️ Configuración y Ejecución
+##  Configuración y Ejecución
 
 ### Prerrequisitos
 
@@ -83,38 +83,38 @@ GRANT ALL PRIVILEGES ON DATABASE redsocial_db TO postgres;
 mvn spring-boot:run
 ```
 
-## 📊 Funcionalidades Principales
+##  Funcionalidades Principales
 
-### 🔐 Autenticación y Autorización
+### Autenticación y Autorización
 - Registro de nuevos usuarios
 - Inicio de sesión con JWT
 - Protección de endpoints con Spring Security
 
-### 👥 Gestión de Usuarios
+### Gestión de Usuarios
 - Creación y actualización de perfiles
 - Información básica de usuario
 
-### 📝 Sistema de Publicaciones
+### Sistema de Publicaciones
 - Crear, editar y eliminar posts
 - Obtener lista de posts
 - Posts por usuario
 
-### 💬 Sistema de Comentarios
+### Sistema de Comentarios
 - Comentar posts
 - Editar y eliminar comentarios propios
 - Listar comentarios por post
 
-### ❤️ Sistema de Likes
+### Sistema de Likes
 - Dar/quitar like a posts
 - Contar likes por post
 - Verificar si un usuario dio like
 
-### 👥 Sistema de Follows
+### Sistema de Follows
 - Seguir/dejar de seguir usuarios
 - Obtener lista de seguidores
 - Obtener lista de usuarios seguidos
 
-## 🔌 Endpoints Principales
+## Endpoints Principales
 
 ### Autenticación
 - `POST /api/auth/register` - Registrar nuevo usuario
@@ -147,8 +147,8 @@ mvn spring-boot:run
 - `DELETE /api/users/{userId}/follow` - Dejar de seguir usuario
 - `GET /api/users/{userId}/followers` - Obtener seguidores
 - `GET /api/users/{userId}/following` - Obtener seguidos
-
-## 🗄️ Base de Datos
+- 
+##  Base de Datos
 
 El proyecto utiliza PostgreSQL como base de datos principal y Liquibase para la gestión de migraciones. Las migraciones se encuentran en:
 
@@ -156,7 +156,7 @@ El proyecto utiliza PostgreSQL como base de datos principal y Liquibase para la 
 src/main/resources/db/changelog/
 ```
 
-## 🔧 Variables de Entorno
+##  Variables de Entorno
 
 Las siguientes variables de entorno pueden ser configuradas:
 
@@ -165,7 +165,7 @@ Las siguientes variables de entorno pueden ser configuradas:
 - `SPRING_DATASOURCE_PASSWORD` - Contraseña de la base de datos
 - `JWT_SECRET_KEY` - Clave secreta para JWT
 
-## 🧪 Testing
+##  Testing
 
 El proyecto incluye pruebas unitarias para los servicios principales. Para ejecutar las pruebas:
 
@@ -173,7 +173,7 @@ El proyecto incluye pruebas unitarias para los servicios principales. Para ejecu
 mvn test
 ```
 
-## 📝 Notas Adicionales
+##  Notas Adicionales
 
 - Se implementan excepciones personalizadas para un mejor manejo de errores
 - La autenticación se basa en JWT tokens
